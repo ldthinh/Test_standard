@@ -362,6 +362,7 @@ static int ws_eink_update_display(struct ws_eink_fb_par *par)
 
 	memcpy(&ssbuf, &vmem, sizeof(vmem));
 	printk("test 123\n");
+	
 	printk("test 1ascacacacac23\n");
 	frame_size = par->props->height * par->props->width * par->props->bpp / 8;
 
