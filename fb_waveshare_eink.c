@@ -361,9 +361,8 @@ static int ws_eink_update_display(struct ws_eink_fb_par *par)
 		return ret;
 
 	memcpy(&ssbuf, &vmem, sizeof(vmem));
-	printk("test 123\n");
 	frame_size = par->props->height * par->props->width * par->props->bpp / 8;
-
+	
 	for (i = 0; i < frame_size; i++) {
 		ssbuf[i] = bitrev8(ssbuf[i]);
 	}
