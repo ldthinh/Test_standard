@@ -355,14 +355,14 @@ static int ws_eink_update_display(struct ws_eink_fb_par *par)
 		lut = lut_partial_update;
 		lut_size = ARRAY_SIZE(lut_partial_update);
 	}
-
+	printk("add 121e1e1ee\n");
 	ret = int_lut(par, lut, lut_size);
 	if (ret)
 		return ret;
 
 	memcpy(&ssbuf, &vmem, sizeof(vmem));
 	frame_size = par->props->height * par->props->width * par->props->bpp / 8;
-	
+
 	for (i = 0; i < frame_size; i++) {
 		ssbuf[i] = bitrev8(ssbuf[i]);
 	}
