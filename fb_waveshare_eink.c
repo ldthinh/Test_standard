@@ -364,10 +364,11 @@ static int ws_eink_update_display(struct ws_eink_fb_par *par)
 	frame_size = par->props->height * par->props->width * par->props->bpp / 8;
 
 	memcpy(ssbuf, vmem, frame_size);
-	
+
 	for (i = 0; i < frame_size; i++) {
 		ssbuf[i] = bitrev8(ssbuf[i]);
 	}
+	
 	ret = set_frame_memory(par, ssbuf);
 	if (ret)
 		return ret;
