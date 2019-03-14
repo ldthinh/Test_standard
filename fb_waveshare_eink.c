@@ -20,7 +20,7 @@
 #include <linux/bitrev.h>
 
 #include "fb_waveshare_eink.h"
-
+printk("assadasd");
 #define WS_DRIVER_OUTPUT_CONTROL		0x01
 #define WS_BOOSTER_SOFT_START_CONTROL		0x0C
 #define WS_DEEP_SLEEP_MODE			0x10
