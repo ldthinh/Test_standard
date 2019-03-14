@@ -516,7 +516,7 @@ static int ws_eink_spi_probe(struct spi_device *spi)
 	const struct waveshare_eink_device_properties *dev_props;
 	struct ws_eink_fb_par *par;
 	u8 *vmem;
-	u8 *buffer;
+	u8 *ssbuf;
 	int vmem_size;
 
 	pdata = spi->dev.platform_data;
@@ -543,9 +543,10 @@ static int ws_eink_spi_probe(struct spi_device *spi)
 	if (!vmem)
 		return -ENOMEM;
 
-	buffer = vzalloc(vmem_size);
-	if (!buffer)
-		return -ENOMEM;	
+	ssbuf = vzalloc(vmem_size);
+	if (!ssbuf)
+		return -ENOMEM;
+
 	info = framebuffer_alloc(sizeof(struct ws_eink_fb_par), &spi->dev);
 	if (!info) {
 		retval = -ENOMEM;
@@ -583,7 +584,7 @@ static int ws_eink_spi_probe(struct spi_device *spi)
 	par->rst	= pdata->rst_gpio;
 	par->dc		= pdata->dc_gpio;
 	par->busy	= pdata->busy_gpio;
-	par->ssbuf	= buffer;
+	par->ssbuf	= ssbuf;
 
 	retval = register_framebuffer(info);
 	if (retval < 0) {
