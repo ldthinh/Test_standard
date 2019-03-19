@@ -606,11 +606,11 @@ static int ws_eink_spi_probe(struct spi_device *spi)
 disp_init_fail:
 	framebuffer_release(info);
 fbreg_fail:
-	iounmap(par->ssbuf);
+	vfree(par->ssbuf);
 ssbuf_alloc_fail:
-	iounmap(info->screen_base);
+	vfree(info->screen_base);
 screen_base_fail:
-	iounmap(info->screen_base);
+	vfree(info->screen_base);
 	return retval;
 }
 
@@ -620,7 +620,7 @@ static int ws_eink_spi_remove(struct spi_device *spi)
 	struct ws_eink_fb_par *par = p->par;
 	unregister_framebuffer(p);
 	iounmap(p->screen_base);
-	iounmap(par->ssbuf);
+	vfree(par->ssbuf);
 	framebuffer_release(p);
 	return 0;
 }
